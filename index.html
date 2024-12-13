@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Interactiva de Cumpleaños</title>
+    <style>
+        body {
+            font-family: 'Arial', 'Times New Roman';
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1ed3fc, #1d2ee8);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            height: 200px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: height 0.5s ease;
+        }
+        .card.expanded {
+            height: 400px;
+        }
+        .card h1 {
+            font-size: 2rem;
+            color: #2c5dfd;
+            margin: 20px 0;
+        }
+        .card .balloons {
+            font-size: 3rem;
+            margin: 10px 0;
+        }
+        .hidden-message {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            height: 0;
+            overflow: hidden;
+        }
+        .card.expanded .hidden-message {
+            opacity: 1;
+            transform: translateY(0);
+            height: auto;
+        }
+        .hidden-message p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .card {
+                height: 200px;
+                transition: none;
+            }
+            .card.expanded {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card" onclick="toggleMessage()">
+        <h1>¡Feliz Cumpleaños Cesar!</h1>
+        <div class="balloons">🎈🎈🎈</div>
+        <div class="hidden-message">
+            <p>Feliz cumple!!!</p>
+            <p>
+                ¡Feliz cumpleaños Cesar! Espero que este día esté lleno de alegría, risas y momentos especiales con las personas que más quieres. Que este nuevo año te traiga muchos éxitos y sueños cumplidos.
+            </p>
+        </div>
+    </div>
+    <script>
+        function toggleMessage() {
+            const card = document.querySelector('.card');
+            card.classList.toggle('expanded');
+        }
+    </script>
+</body>
+</html>
