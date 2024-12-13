@@ -15,7 +15,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden
+            overflow: hidden;
         }
         .card {
             background: white;
@@ -27,9 +27,10 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
             transition: height 0.5s ease;
         }
-        .card:hover {
+        .card.expanded {
             height: 400px;
         }
         .card h1 {
@@ -42,32 +43,48 @@
             margin: 10px 0;
         }
         .hidden-message {
-            display: none;
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            height: 0;
+            overflow: hidden;
         }
-        .card:hover .hidden-message {
-            display: block;
+        .card.expanded .hidden-message {
             opacity: 1;
+            transform: translateY(0);
+            height: auto;
         }
         .hidden-message p {
             font-size: 1.2rem;
             margin: 20px 0;
         }
+        @media (max-width: 768px) {
+            .card {
+                height: 200px;
+                transition: none;
+            }
+            .card.expanded {
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="card">
+    <div class="card" onclick="toggleMessage()">
         <h1>¡Feliz Cumpleaños Cesar!</h1>
         <div class="balloons">🎈🎈🎈</div>
-        <div>
-            <br>
-            <br>
+        <div class="hidden-message">
             <p>Feliz cumple!!!</p>
             <p>
                 ¡Feliz cumpleaños Cesar! Espero que este día esté lleno de alegría, risas y momentos especiales con las personas que más quieres. Que este nuevo año te traiga muchos éxitos y sueños cumplidos.
             </p>
         </div>
     </div>
+    <script>
+        function toggleMessage() {
+            const card = document.querySelector('.card');
+            card.classList.toggle('expanded');
+        }
+    </script>
 </body>
 </html>
